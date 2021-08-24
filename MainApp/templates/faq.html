@@ -1,0 +1,39 @@
+{% extends 'frontend/base3.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+    
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <!-- Page Content-->
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Frequently Asked Questions</h1>
+                <p class="lead fw-normal text-muted mb-0">How can we help you?</p>
+            </div>
+            <div class="row gx-5">
+                <div class="col-xl-12">
+                    {%for f in faqs %}
+                    <!-- FAQ Accordion 1-->
+                    <h4 class="fw-bolder mb-3">{{f.judul.judulFAQ}}</h4>
+                    <div class="accordion mb-5" id="accordionExample">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{f.pertanyaan}}</button></h3>
+                            <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {{f.jawaban}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {%endfor %}
+                    <!-- FAQ Accordion 2-->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

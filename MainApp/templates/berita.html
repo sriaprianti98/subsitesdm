@@ -1,0 +1,53 @@
+{% extends 'frontend/base3.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+<div class="container">
+    <div class="container"> <!-- container -->
+        <div class="section-header">
+            <h2>Semua Berita <span class="highlight"><strong>Biro Sumber Daya Manusia</strong></span></h2>
+            <h5>Badan Pengawas Obat dan Makanan </h5>
+            <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+        </div>
+    </div><!-- end container -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                {%for b in beritas %}
+                <div class="col-lg-3 col-sm-6">
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="{{b.Photo.url}}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{b.tanggal_berita}}</div>
+                            <h2 class="card-title h4">{{b.judul}}</h2>
+                            <p class="card-text">
+                                {% autoescape off %}
+                                {{b.isi}}
+                                {% endautoescape %}
+                            </p>
+                            <a class="btn btn-primary" href="{% url 'detail_berita' pk=b.pk %}">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Pagination-->
+            <nav aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Side widgets-->
+        
+    </div>
+</div>
+{% endblock %}

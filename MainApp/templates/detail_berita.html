@@ -1,0 +1,25 @@
+{% extends 'frontend/base2.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+    <div id="tf-blog" class="blog-post">
+
+        <div id="blog-post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-2">
+                        <div class="post-wrap">
+                            <p class="small">{{beritas.create_by}}</p>
+                            <p class="small">{{beritas.tanggal_berita}}</p>
+                            <h5 class="media-heading"><strong>{{beritas.judul}}</strong></h5>
+                            <img src="{{beritas.Photo.url}}" width="800" height="500" class="img-responsive" alt="...">
+                            <p>{{beritas.isi}}</p>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

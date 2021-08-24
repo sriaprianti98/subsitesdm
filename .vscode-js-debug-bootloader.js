@@ -1,0 +1,1 @@
+require("c:/Program Files/Microsoft VS Code/resources/app/extensions/ms-vscode.js-debug/src/bootloader.bundle.js")

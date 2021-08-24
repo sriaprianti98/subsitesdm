@@ -1,0 +1,63 @@
+{% extends 'frontend/base3.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0"><div class="container"> <!-- container -->
+        <div class="section-header">
+                <h4>PELAYANAN-PELAYANAN <span class="highlight"><strong>BIRO SDM</strong></span></h4>
+                <!-- <h5><em>terdiri dari informasi berita terbaru</em></h5> -->
+                <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+            </div>
+        </div>
+        <section class="py-1">
+            {%for p in pelayanans %}
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-xl-8">
+                        <!-- FAQ Accordion 1-->
+                        <h4 class="fw-bolder mb-3">{{p.kelompok_id.nm_kelompok}}</h4>
+                        <div class="accordion mb-5" id="accordionExample">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{p.nm_pelayanan}}</button></h3>
+                                <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <strong>SYARAT PELAYANAN :</strong>
+                                        <ul>
+                                            {% for sy in p.detailpelayanan_id.syaratpelayanan_id.all%}
+                                            <li>{{sy}}</li>
+                                            {% endfor %}
+                                          </ul> 
+                                        <p>{{p.detailpelayanan_id.syarat_pelayanan}}</p>
+                                        <center><img src="{{ p.detailpelayanan_id.infografis.url }}" width="600px"></center>
+                                        <!-- <p>{{p.detailpelayanan_id.infografis.url}}</p> -->
+                                        <button type="submit" class="btn btn-primary tf-btn color">Send Message</button>
+                                        <p>{{p.detailpelayanan_id.dokumen}}</p>
+                                        <code>{{p.detailpelayanan_id.link}}</code>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <h5 class="fw-bolder mb-3">Kategori Pelayanan</h5>
+                        <div class="card border-0 bg-light mt-xl-5">
+                            <div class="card-body p-4 py-lg-5">
+                                <ul style="list-style-type:none;">
+                                    {% for kt in kat %}
+                                    <li><a href=".?kat={{kt.pk}}">{{kt.nm_kategori}}</a></li>
+                                    {% empty %}
+                                    Kategori belum dibuat
+                                    {% endfor %}
+                                  </ul> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+{% endblock %}

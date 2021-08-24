@@ -1,0 +1,191 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+<!-- Home Section
+    ================================================== -->
+    <div id="tf-home" class="slider">
+        <div class="overlay">
+            <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for titik in berandas %}
+                    <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|is_active}}"></li>
+                    {% endfor %}
+                </ol>
+
+                  <div class="carousel-inner" role="listbox">
+                    {% for br in berandas %}
+                    <div class="item {{forloop.first|is_active}}">
+                        <img src="{{br.Photo_beranda.url}}" alt="...">
+                        <div class="carousel-caption">
+                            <div class="content-heading text-center">
+                                <h1>{{br.judul_beranda}}</h1>
+                                <p class="lead">{{br.deskripsi}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+                    
+        </div>
+    </div>
+
+    <!-- <div id="tf-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2"> 
+                    <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+                    <p>Biro Sumber Daya Manusia mempunyai tugas melaksanakan koordinasi dan pengelolaan sumber daya manusia</p>
+                </div>
+                
+            </div>
+        </div>
+    </div> -->
+
+    <!--  Blog Section
+    ================================================== -->
+    <div id="tf-blog">
+        <div class="container"> <!-- container -->
+            <div class="section-header">
+                <h2>Berita Terbaru <span class="highlight"><strong>Biro sdm</strong></span></h2>
+                <h5><em>terdiri dari informasi berita terbaru</em></h5>
+                <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+            </div>
+        </div>
+        <div id="blog-post" class="gray-bg">
+            <div class="container">
+                <div class="row">
+                    {%for b in beritas %}
+                    <div class="col-md-6">
+                        <div class="post-wrap">
+                            <div class="media post">
+                                <div class="media-left"> 
+                                    <a href="#">
+                                      <img class="media-object" src="{{b.Photo.url}}" width="200" height="140"alt="..."> 
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <p class="small">{{b.tanggal_berita}}</p>
+                                    <a href="{% url 'detail_berita' pk=b.pk %}">
+                                        <h5 class="media-heading"><strong>{{b.judul}}</strong></h5>
+                                    </a>
+                                    {% comment %} <p>{{b.isi}} </p> {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="post-meta">
+                                <ul class="list-inline metas pull-left">
+                                    <li>{{b.created_by.nama}}</li>
+                                    <li><a  href="{% url 'detail_berita' pk=b.pk %}">Read More</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="{% url 'berita' %}" class="btn btn-primary tf-btn color">Load More</a>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <div id="tf-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kegiatan <span class="highlight"><strong>Biro SDM</strong></span></h2>
+                <h5><em>informasi terkait semua kegiatan di biro sdm</em></h5>
+                <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+            </div>
+        </div>
+
+        <div class="container"> <!-- fluid container -->
+             <div id="itemsWorkTwo" class="row text-center">
+                {% for br in berandas %}
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 {{br.judul_beranda}}">
+                    <div class="box"> 
+                        <div class="hover-bg">
+                            <div class="hover-text off">
+                                <a title="{{br.judul_beranda}}" href="{{br.Photo_beranda.url}}" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/portfolio/01@2x.jpg">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                                <a href="#"><i class="fa fa-chain"></i></a>
+                            </div> 
+                            <img src="{{br.Photo_beranda.url}}" class="img-responsive" alt="Image">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="tf-works">
+    
+    <div id="tf-contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kontak Kami <span class="highlight"><strong>Biro sdm</strong></span></h2>
+                <h5><em>silahkan hubungi kami </em></h5>
+                <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row"> 
+                {% for k in kontaks%}
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row">
+                        <div class="col-md-4">  
+                            <div class="contact-detail">
+                                <i class="fa fa-map-marker"></i>
+                                <h4>{{k.alamat}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-detail">
+                                <i class="fa fa-envelope-o"></i>
+                                <h4>{{k.email}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-detail">
+                                <i class="fa fa-phone"></i>
+                                <h4>{{k.nohp}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <form id="contact-form" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{form.nama}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{form.email}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    {{form.subjek}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{form.pesan}}
+                        </div>
+                        {% comment %} <button type="submit" class="btn btn-primary tf-btn color">Send Message</button> {% endcomment %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

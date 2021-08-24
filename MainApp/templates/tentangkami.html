@@ -1,0 +1,57 @@
+{% extends 'frontend/base2.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+<div id="tf-services">
+    <div class="container">
+        <div class="section-header">
+            <h2><span class="highlight">Profil <strong>Biro SUMBER DAYA MANUSIA</strong></span></h2>
+            <h5>Biro Sumber Daya Manusia mempunyai tugas melaksanakan koordinasi dan pengelolaan sumber daya manusia</h5>
+        </div>
+        <div class="section-header1">
+            <h3><span class="highlight">Dalam melaksanakan tugas sebagaimana dimaksud dalam Pasal 22, Biro Sumber Daya Manusia menyelenggarakan fungsi:</span></h3>
+                <p class="justify">1. Penyiapan koordinasi dan perencanaan sumber daya manusia;<p>
+                <p class="justify">2. penyiapan koordinasi dan pengelolaan karier sumber daya manusia;<p>
+                <p class="justify">3. penyiapan koordinasi dan pengelolaan kinerja dan disiplin sumber daya manusia;<p>
+                <p class="justify">4. penyiapan koordinasi dan pengelolaan kesejahteraan, gaji, dan tunjangan<p>
+                <p class="justify">5. penyiapan koordinasi dan pengelolaan data dan informasi sumber daya manusia; dan<p>
+                <p class="justify">6. pelaksanaan urusan tata usaha dan rumah tangga biro<p>
+        </div>
+        <div class="section-header1">
+            <h3><span class="highlight">Kelompok dan subkelompok Biro SUMBER DAYA MANUSIA</span></h3>
+        </div>
+        <div class="row" role="tabpanel">
+            <div class="col-md-4 col-md-offset-1">
+                <ul class="features nav nav-pills nav-stacked" role="tablist">
+                    {%for tk in tentangs %}
+                    <li role="presentation" class="{{forloop.first|is_active}}">  <!-- feature tab menu #1 -->
+                        <a href="#{{tk.id}}" aria-controls="{{tk.id}}" role="tab" data-toggle="tab">
+                            {% comment %} <span class="fa fa-desktop"></span> {% endcomment %}
+                            {{tk.nm_kelompok}}<br><small></small>
+                        </a>
+                    </li>
+                    {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <div class="tab-content features-content">
+                    {%for tk in tentangs %}
+                    <div role="tabpanel" class="tab-pane fade in {{forloop.first|is_active}}" id="{{tk.id}}"> <!-- feature #1 content open -->
+                        <h4>{{tk.nm_kelompok}}</h4>
+                        <ol>
+                            <li style="color:black">{{tk.subkelompok1}} </li>
+                            <li style="color:black">{{tk.subkelompok2}}</li>
+                            <li style="color:black">{{tk.subkelompok3}}</li>
+                        </ol>
+                        <img src="{{tk.Photo.url}}" width="921" height="701" class="img-responsive" alt="...">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="section-header1">
+            <h3><span class="highlight">Struktur Organisasi Biro SDM</span></h3>
+            <img src="{{tk.Photo.url}}" width="921" height="701" class="img-responsive" alt="...">
+        </div>
+    </div>
+</div>
+{% endblock %}
