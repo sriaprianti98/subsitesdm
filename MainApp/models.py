@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-import uuid
+# import uuid
 # from datetime import datetime
 import datetime
 from django.utils.crypto import get_random_string
