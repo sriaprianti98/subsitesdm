@@ -16,7 +16,7 @@
                 <div class="row gx-5">
                     <div class="col-xl-8">
                         <!-- FAQ Accordion 1-->
-                        <h4 class="fw-bolder mb-3">{{p.kelompok_id.nm_kelompok}}</h4>
+                        <h4 class="fw-bolder mb-3">{{p.kategori_id.nm_kategori}}</h4>
                         <div class="accordion mb-5" id="accordionExample">
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{p.nm_pelayanan}}</button></h3>
@@ -29,11 +29,12 @@
                                             {% endfor %}
                                           </ul> 
                                         <p>{{p.detailpelayanan_id.syarat_pelayanan}}</p>
-                                        <center><img src="{{ p.detailpelayanan_id.infografis.url }}" width="600px"></center>
-                                        <!-- <p>{{p.detailpelayanan_id.infografis.url}}</p> -->
-                                        <button type="submit" class="btn btn-primary tf-btn color">Send Message</button>
-                                        <p>{{p.detailpelayanan_id.dokumen}}</p>
-                                        <code>{{p.detailpelayanan_id.link}}</code>
+                                        
+                                        <p class="text-center"><img src="{{ p.detailpelayanan_id.infografis.url }}" width="700px"></p>
+                                        <div align="right">
+                                            <a href="{{p.detailpelayanan_id.dokumen.url}}" download><input type="button" value="Unduh Dokumen" /></a>
+                                            <a href="{p.detailpelayanan_id.link}}" download><input type="button" value="Lihat Aplikasi" /></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
