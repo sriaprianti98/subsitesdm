@@ -2,24 +2,56 @@
 {% load static %}
 {% load subsite_tags %}
 {% block kontennya %}
-    <div id="tf-blog" class="blog-post">
 
-        <div id="blog-post">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9 col-md-offset-2">
-                        <div class="post-wrap">
-                            <p class="small">{{beritas.create_by}}</p>
-                            <p class="small">{{beritas.tanggal_berita}}</p>
-                            <h5 class="media-heading"><strong>{{beritas.judul}}</strong></h5>
-                            <img src="{{beritas.Photo.url}}" width="800" height="500" class="img-responsive" alt="...">
-                            <p>{{beritas.isi}}</p>
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="tf-blog" class="blog-post">
+    <!-- <div class="container"> 
+        <div class="section-header">
+            <h2>Latest from the <span class="highlight"><strong>Blog</strong></span></h2>
+            <h5><em>We design and build functional and beautiful websites</em></h5>
+            <div class="fancy"><span><img src="img/favicon.ico" alt="..."></span></div>
+        </div> -->
     </div>
+
+    <div id="blog-post"> <!-- fullwidth gray background -->
+        <div class="container"><!-- container -->
+
+            <div class="row"> <!-- row -->
+                <div class="col-md-9 col-md-offset-1"> <!-- Left Blogrol col 8 -->
+
+                    <div class="post-wrap"> <!-- Post Wrapper -->
+                        <p class="small">{{beritas.tanggal_berita}}</p>
+                        <a href="#">
+                            <h5 class="media-heading"><strong>{{beritas.judul}}</strong></h5>
+                        </a>
+
+                        <ul class="list-inline metas pull-left"> <!-- post metas -->
+                            <li><a href="#">by {{beritas.created_by.nama}}</a></li> <!-- meta author -->
+                        </ul><br/>
+
+                        
+                        <img class="media-object" src="{{beritas.Photo.url}}" width="800" height="500" alt="...">
+
+                        <p>{{beritas.isi}}</p>
+                        {% if beritas.dokumen %}
+                        
+                        <a href="{{beritas.dokumen.url}}"download>klik disini untuk selengkapnya</a>
+                        {%endif%}
+                        <br>
+                        <br>
+                        <p><strong>Kategori Berita: </strong></p>
+                        <a href="#">{{beritas.kategori_berita.kategori}}</a>
+                        
+                    </div>
+                </div> <!-- end Left content col 8 -->
+
+                <div class="col-md-4"> <!-- Blog Sidebar -->
+                    
+                </div><!-- end right content col 4 -->
+
+            </div><!-- end row -->
+                  
+        </div><!-- end container -->
+    </div> <!-- end fullwidth gray background -->
+</div>
+
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'frontend/base2.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+{%for pr in profilkaros %}
+<div>
+    <div class="overlay">
+        <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="background-size:cover" height="100%" width="100%" src="{{pr.Photo.url}}" alt="...">
+                </div>
+            </div>
+        </div>  
+        </div>
+    </div><!-- End Overlay Color -->
+</div>
+<div id="tf-intro">
+    <div class="container"> <!-- container -->
+        <div class="row"> <!-- row -->
+
+            <div class="col-md-10 col-md-offset-1"> 
+                <img src="{% static 'img/logo.png' %}" class="intro-logo img-responsive" alt="free-template"> <!-- Your company logo in white -->
+                <p style="color: black;text-align: justify;">{{pr.deskripsi}} </p>
+            </div>
+            
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div>
+{%endfor%}
+{% endblock %}

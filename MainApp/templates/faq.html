@@ -1,4 +1,4 @@
-{% extends 'frontend/base3.html' %}
+{% extends 'frontend/basee.html' %}
 {% load static %}
 {% load subsite_tags %}
 {% block kontennya %}
@@ -12,28 +12,125 @@
                 <h1 class="fw-bolder">Frequently Asked Questions</h1>
                 <p class="lead fw-normal text-muted mb-0">How can we help you?</p>
             </div>
+            
             <div class="row gx-5">
-                <div class="col-xl-12">
-                    {%for f in faqs %}
+                <div id="faqlist" class="col-xl-8">
                     <!-- FAQ Accordion 1-->
-                    <h4 class="fw-bolder mb-3">{{f.judul.judulFAQ}}</h4>
+                    <h4 class="fw-bolder mb-3">{{faqs.0.kategori_FAQ.kategori_faq}}</h4>
                     <div class="accordion mb-5" id="accordionExample">
+                        {%for f in faqs %}
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{f.pertanyaan}}</button></h3>
-                            <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{f.pk}}" aria-expanded="true" aria-controls="collapseOne">{{f.detail_FAQ.pertanyaan}}</button></h3>
+                            <div class="accordion-collapse collapse" id="collapse{{f.pk}}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    {{f.jawaban}}
+                                    {{f.detail_FAQ.jawaban.judulFAQ}}
                                 </div>
+                            </div>
+                        </div>
+                        {%endfor %}
+                    </div>
+                    <!-- FAQ Accordion 2-->
+                    <ul id="skeleton-loading" style="display: none;" class="o-vertical-spacing o-vertical-spacing--l">
+                        <li class="blog-post o-media">
+                    <!--       <div class="o-media__figure">
+                            <span class="skeleton-box" style="width:100px;height:80px;"></span>
+                          </div> -->
+                          <div class="o-media__body">
+                            <div class="o-vertical-spacing">
+                              <h3 class="blog-post__headline">
+                                <span class="skeleton-box" style="width:55%;"></span>
+                              </h3>
+                              <p>
+                                <span class="skeleton-box" style="width:80%;"></span>
+                                <span class="skeleton-box" style="width:90%;"></span>
+                                <span class="skeleton-box" style="width:83%;"></span>
+                                <span class="skeleton-box" style="width:80%;"></span>
+                              </p>
+                              <div class="blog-post__meta">
+                                <span class="skeleton-box" style="width:70px;"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    
+                </div>
+                <div class="col-xl-4">
+                    <div class="card border-0 bg-light mt-xl-5">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input  id="keyword" class="form-control" onchange="onsearchfaq()" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" onclick="onsearchfaq()" type="button">Go!</button>
                             </div>
                         </div>
                     </div>
                     
-                    {%endfor %}
-                    <!-- FAQ Accordion 2-->
-                    
+                    <div class="card border-0 bg-light mt-xl-5">
+                        <div class="card-header">Kategori FAQ</div>
+                        <div class="card-body p-4 py-lg-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <ul class="list-unstyled mb-0">
+                                            {% for kt in katFAQ %}
+                                            <li class="{{forloop.first|is_active}}"><a href=".?katFAQ={{kt.pk}}">{{kt.kategori_faq}}</a></li>
+                                            {% empty %}
+                                            Kategori belum dibuat
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card border-0 bg-light mt-xl-5">
+                        <div class="card-body p-4 py-lg-2">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="text-center">
+                                    <div class="h6 fw-bolder">Have more questions?</div>
+                                    <p class="text-muted mb-4">
+                                        Contact us at
+                                        <br />
+                                        <a href="#!" onclick="return window.location = 'mailto:{{kontaks.0.email}}';">{{kontaks.0.email}}</a>
+                                    </p>
+                                    <p>klik disini untuk mengajukan pertanyaan!</p>
+                                    <a href="{{kontaks.0.directlink}}" class="btn btn-warning">ajukan pertanyaan!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
+{% endblock %}
+
+{% block external_js %}
+
+<script type="text/javascript">
+    // jQuery(document).ready(function($){
+        var onsearchfaq = function(){
+            // console.log(1);
+            // alert(1);
+            keyword = $('#keyword').val();
+            $('#skeleton-loading').attr('style',"display: block;");
+            $('#faqlist').attr('style',"display: none;");
+            var url = "{% url 'faq' %}";
+            var data = new FormData()
+            data.append("keyword",keyword);
+            axios.post(url, data)
+                .then(function (res) {
+                    // console.log(res);
+                    $('#faqlist').html(res.data.value);
+                    $('#faqlist').attr('style',"display: block;");
+                    $('#skeleton-loading').attr('style',"display: none;");
+                
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        }
+    // });
+</script>
+
 {% endblock %}

@@ -2,20 +2,21 @@
 {% load static %}
 {% load subsite_tags %}
 {% block kontennya %}
+
 <div id="tf-services">
     <div class="container">
+        {%for tk in tentangs %}
         <div class="section-header">
             <h2><span class="highlight">Profil <strong>Biro SUMBER DAYA MANUSIA</strong></span></h2>
             <h5>Biro Sumber Daya Manusia mempunyai tugas melaksanakan koordinasi dan pengelolaan sumber daya manusia</h5>
         </div>
         <div class="section-header1">
             <h3><span class="highlight">Dalam melaksanakan tugas sebagaimana dimaksud dalam Pasal 22, Biro Sumber Daya Manusia menyelenggarakan fungsi:</span></h3>
-                <p class="justify">1. Penyiapan koordinasi dan perencanaan sumber daya manusia;<p>
-                <p class="justify">2. penyiapan koordinasi dan pengelolaan karier sumber daya manusia;<p>
-                <p class="justify">3. penyiapan koordinasi dan pengelolaan kinerja dan disiplin sumber daya manusia;<p>
-                <p class="justify">4. penyiapan koordinasi dan pengelolaan kesejahteraan, gaji, dan tunjangan<p>
-                <p class="justify">5. penyiapan koordinasi dan pengelolaan data dan informasi sumber daya manusia; dan<p>
-                <p class="justify">6. pelaksanaan urusan tata usaha dan rumah tangga biro<p>
+            <ol style="line-height: 2;">
+                {%for t in tk.tugaspom.all %}
+                <li>{{t.tugas}}</li>
+                {%endfor%}
+            </ol>     
         </div>
         <div class="section-header1">
             <h3><span class="highlight">Kelompok dan subkelompok Biro SUMBER DAYA MANUSIA</span></h3>
@@ -23,35 +24,39 @@
         <div class="row" role="tabpanel">
             <div class="col-md-4 col-md-offset-1">
                 <ul class="features nav nav-pills nav-stacked" role="tablist">
-                    {%for tk in tentangs %}
+                    {%for k in tk.kelompok_id.all %}
                     <li role="presentation" class="{{forloop.first|is_active}}">  <!-- feature tab menu #1 -->
-                        <a href="#{{tk.id}}" aria-controls="{{tk.id}}" role="tab" data-toggle="tab">
-                            {% comment %} <span class="fa fa-desktop"></span> {% endcomment %}
-                            {{tk.nm_kelompok}}<br><small></small>
+                        <a href="#{{k.id}}" aria-controls="{{k.id}}" role="tab" data-toggle="tab">
+                            {{k.nm_kelompok}}<br><small></small>
                         </a>
                     </li>
-                    {% endfor %}
+                    {%endfor%}
+                    </ul>
             </div>
             <div class="col-md-6">
                 <div class="tab-content features-content">
-                    {%for tk in tentangs %}
-                    <div role="tabpanel" class="tab-pane fade in {{forloop.first|is_active}}" id="{{tk.id}}"> <!-- feature #1 content open -->
-                        <h4>{{tk.nm_kelompok}}</h4>
+                    {%for k in tk.kelompok_id.all %}
+                    <div role="tabpanel" class="tab-pane fade in {{forloop.first|is_active}}" id="{{k.id}}"> <!-- feature #1 content open -->
+                        <h4>{{k.nm_kelompok}}</h4>
                         <ol>
-                            <li style="color:black">{{tk.subkelompok1}} </li>
-                            <li style="color:black">{{tk.subkelompok2}}</li>
-                            <li style="color:black">{{tk.subkelompok3}}</li>
+                            {%for sk in k.subkelompok_id.all %}
+                            <li style="color:black">{{sk.nm_subkelompok}} </li>
+                            {% endfor %}
                         </ol>
-                        <img src="{{tk.Photo.url}}" width="921" height="701" class="img-responsive" alt="...">
+                        <img src="{{k.Photo.url}}" width="921" height="701" class="img-responsive" alt="...">
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            {% endfor %}
         </div>
+        {%for tk in tentangs %}
         <div class="section-header1">
             <h3><span class="highlight">Struktur Organisasi Biro SDM</span></h3>
-            <img src="{{tk.Photo.url}}" width="921" height="701" class="img-responsive" alt="...">
+            <center><img src="{{tk.gb_strukturorganisasi.url}}" width="821" height="701" class="img-responsive" alt="..."></center>
         </div>
+        {%endfor%}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d342.5528299837564!2d106.85918989554817!3d-6.188718088010951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f565bc3c17e7%3A0xd82e874737c5fc13!2sBadan%20POM%20RI%20-%20Gedung%20C!5e0!3m2!1sid!2sid!4v1631112054474!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </div>
 {% endblock %}

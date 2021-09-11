@@ -6,42 +6,31 @@
     ================================================== -->
     <div id="tf-home" class="slider">
         <div class="overlay">
-            <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    {% for titik in berandas %}
-                    <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|is_active}}"></li>
-                    {% endfor %}
-                </ol>
+            <!-- <div class="container">  -->
+                <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for titik in berandas %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="{{forloop.first|is_active}}"></li>
+                        {% endfor %}
+                    </ol>
 
-                  <div class="carousel-inner" role="listbox">
-                    {% for br in berandas %}
-                    <div class="item {{forloop.first|is_active}}">
-                        <img src="{{br.Photo_beranda.url}}" alt="...">
-                        <div class="carousel-caption">
-                            <div class="content-heading text-center">
-                                <h1>{{br.judul_beranda}}</h1>
-                                <p class="lead">{{br.deskripsi}}</p>
+                    <div class="carousel-inner" role="listbox">
+                        {% for br in berandas %}
+                        <div class="item {{forloop.first|is_active}}">
+                            <img src="{{br.Photo_beranda.url}}" width="2500" height="904" class="img-responsive" alt="...">
+                            <div class="carousel-caption">
+                                <div class="content-heading text-center">
+                                    <h1>{{br.judul_beranda}}</h1>
+                                    <p class="lead">{{br.deskripsi}}</p>
+                                </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-            </div>
-                    
+                </div>
+            <!-- </div> -->
         </div>
     </div>
-
-    <!-- <div id="tf-intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2"> 
-                    <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
-                    <p>Biro Sumber Daya Manusia mempunyai tugas melaksanakan koordinasi dan pengelolaan sumber daya manusia</p>
-                </div>
-                
-            </div>
-        </div>
-    </div> -->
-
     <!--  Blog Section
     ================================================== -->
     <div id="tf-blog">
@@ -67,17 +56,20 @@
                                 <div class="media-body">
                                     <p class="small">{{b.tanggal_berita}}</p>
                                     <a href="{% url 'detail_berita' pk=b.pk %}">
-                                        <h5 class="media-heading"><strong>{{b.judul}}</strong></h5>
+                                        <h5 style="color:black" class="media-heading"><strong>{{b.judul}}</strong></h5>
                                     </a>
                                     {% comment %} <p>{{b.isi}} </p> {% endcomment %}
                                 </div>
                             </div>
                             <div class="post-meta">
                                 <ul class="list-inline metas pull-left">
-                                    <li>{{b.created_by.nama}}</li>
-                                    <li><a  href="{% url 'detail_berita' pk=b.pk %}">Read More</a></li>
+                                    <li style="color:black">{{b.tanggal_berita}}</li> 
+                                    <li style="color:black">by {{b.created_by.nama}}</li>
                                 </ul>
-                            </div>
+                                <ul class="list-inline meta-detail pull-right">
+                                    <li><a href="{% url 'detail_berita' pk=b.pk %}">Read More</a></li> 
+                                </ul>
+                            </div><!-- end Meta details -->
                         </div>
                     </div>
                     {% endfor %}
@@ -91,6 +83,7 @@
         </div>
     </div>
 
+    
     <div id="tf-works">
         <div class="container">
             <div class="section-header">
@@ -99,7 +92,6 @@
                 <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
             </div>
         </div>
-
         <div class="container"> <!-- fluid container -->
              <div id="itemsWorkTwo" class="row text-center">
                 {% for br in berandas %}
@@ -107,12 +99,12 @@
                     <div class="box"> 
                         <div class="hover-bg">
                             <div class="hover-text off">
-                                <a title="{{br.judul_beranda}}" href="{{br.Photo_beranda.url}}" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/portfolio/01@2x.jpg">
+                                <a title="{{br.judul_beranda}}" href="{{br.Photo_beranda.url}}"  data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/portfolio/01@2x.jpg">
                                     <i class="fa fa-expand"></i>
                                 </a>
                                 <a href="#"><i class="fa fa-chain"></i></a>
                             </div> 
-                            <img src="{{br.Photo_beranda.url}}" class="img-responsive" alt="Image">
+                            <img src="{{br.Photo_beranda.url}}" width="900" height="700" class="img-responsive" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -120,7 +112,6 @@
             </div>
         </div>
     </div>
-    <div id="tf-works">
     
     <div id="tf-contact">
         <div class="container">
@@ -130,6 +121,9 @@
                 <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
             </div>
         </div>
+        <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d342.5528299837564!2d106.85918989554817!3d-6.188718088010951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f565bc3c17e7%3A0xd82e874737c5fc13!2sBadan%20POM%20RI%20-%20Gedung%20C!5e0!3m2!1sid!2sid!4v1631112054474!5m2!1sid!2sid" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>  <!-- google map -->
         <div class="container">
             <div class="row"> 
                 {% for k in kontaks%}
@@ -157,35 +151,26 @@
                 </div>
                 {% endfor %}
             </div>
-
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                    <form id="contact-form" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {{form.nama}}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {{form.email}}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {{form.subjek}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{form.pesan}}
-                        </div>
-                        {% comment %} <button type="submit" class="btn btn-primary tf-btn color">Send Message</button> {% endcomment %}
-                    </form>
+        </div>
+    </div>
+    <div id="tf-counter" class="text-center">
+        <div class="container">
+            <div class="row"> <!-- Row -->
+                <div class="counter">
+                    {% for ta in tautans%}
+                <div class="col-xs-6 col-sm-4 col-md-3 col-md-3  facts"><!-- counter #1 -->
+                    <div class="count-box"> 
+                        <div class="fancy"><span><img src="{{ta.photo.url}}" alt="..."></span></div>
+                        <p>{{ta.nm_aplikasi}}</p>
+                        <p class="small">{{ta.desk}}</p>
+                        <a href="{{ta.directlink}}"class="btn btn-info" >Lihat Aplikasi</a>
+                    </div>
                 </div>
-            </div>
+                {%endfor%}
+
+                </div>
+
+            </div>  <!-- End Row -->
         </div>
     </div>
 {% endblock %}

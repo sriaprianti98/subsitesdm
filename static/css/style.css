@@ -83,7 +83,10 @@ html {
 }
 
 @media (min-width: 1200px) { 
-    .container { width: 1100px }
+    .container { 
+        width: 1100px;
+        
+     }
 }
 h1 {
     font-weight: 900;
@@ -219,7 +222,6 @@ a:focus {
 #tf-header .breadcrumb > li a { color: #ffffff }
 /* Home Style */
 #tf-home {
-    background: url(../img/bg/01.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -233,7 +235,6 @@ a:focus {
     background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
     background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
-    padding: 20% 0;
     background-attachment: fixed;
 }
 #tf-home h1 { color: #ffffff }
@@ -274,7 +275,8 @@ a.goto-btn:hover {
 .img-wrapper i.fa:hover { background: #191970 }
 /* Home Section Style 3 - Slider*/
 #tf-home.slider { background: none }
-#tf-home.slider .overlay { padding: 0 }
+#tf-home.slider .overlay { 
+    padding: 0 ;}
 .carousel-caption {
     position: absolute;
     right: 15%;
@@ -316,6 +318,10 @@ a.goto-btn:hover {
     margin: 0;
     background-color: #191970;
 }
+
+.carousel-inner .item .img {
+    background-attachment: fixed; 
+}
 .carousel-fade .carousel-inner .item {
     opacity: 0;
     transition-property: opacity;
@@ -331,9 +337,7 @@ a.goto-btn:hover {
 .carousel-fade .carousel-inner .prev.right { opacity: 1 }
 .carousel-fade .carousel-control { z-index: 2 }
 /* Home Section Style 4 - App Header Style*/
-#tf-home.app .overlay { padding: 10% 0 5% 0 }
-#tf-home.app {background: url(../img/bg/02.jpg);}
-a.goto-btn { margin-right: 30px }
+a.goto-btn { margin-right: 0px }
 .ipad-wrapper .app-wrap {
     position: relative;
     width: 395px;
@@ -346,14 +350,6 @@ a.goto-btn { margin-right: 30px }
     background-repeat: no-repeat;
     z-index: 2;
     left: 5%;
-}
-#owl-demo .item img {
-    position: relative;
-    width: 305px;
-    height: auto;
-    left: 12%;
-    margin-top: 46px;
-    z-index: -1;
 }
 .app .content-heading.text-left { padding: 15% 0 }
 #tf-home.app .owl-theme .owl-controls .owl-page span {
@@ -388,9 +384,9 @@ a.goto-btn { margin-right: 30px }
 }
 /* Intro Section */
 #tf-intro {
-    background-color: #1455e4;
+    background-color: #ffffff;
     padding: 5% 0;
-    color: #719af3;
+    color: #f7faff;
     text-align: center;
 }
 #tf-intro img.intro-logo {
@@ -398,7 +394,7 @@ a.goto-btn { margin-right: 30px }
     margin-bottom: 30px;
 }
 /* Service Section */
-#tf-services { padding: 60px 0 }
+#tf-services { padding: 150px 10px }
 .section-header {
     padding: 40px 0;
     text-align: center;
@@ -1111,7 +1107,7 @@ ul.social li a i {
 ul.social li a i:hover { border-color: #ffffff }
 /* Blog Page */
 .blog .media.post {
-    background: rgb(190, 24, 24);
+    background: rgb(252, 252, 252);
     padding: 10px;
     border: 1px solid #E9E9E9;
     border-bottom-color: transparent;
@@ -1138,8 +1134,8 @@ ul.social li a i:hover { border-color: #ffffff }
     line-height: 1.42857143;
     color: #FFFFFF;
     text-decoration: none;
-    background-color: #191970;
-    border: 1px solid #191970;
+    background-color: #006426;
+    border: 1px solid #006426;
     margin: 3px 3px;
     font-weight: 700;
     text-transform: uppercase;
@@ -1151,8 +1147,8 @@ ul.social li a i:hover { border-color: #ffffff }
 .pagination > li > a:focus,
 .pagination > li > span:focus {
     color: #FFFFFF;
-    background-color: #ddab15;
-    border-color: #ddab15;
+    background-color: #191970;
+    border-color: #191970;
 }
 /* Sidebar */
 .widget {
@@ -1178,7 +1174,7 @@ ul.list-unstyled.bullet-lists li span.fa.fa-circle {
     font-size: 8px;
     vertical-align: middle;
     margin-right: 10px;
-    color: #191970;
+    color: #308300;
 }
 ul.list-unstyled.bullet-lists li { padding: 5px 0 }
 ul.list-unstyled.bullet-lists li:hover { color: #191970 }

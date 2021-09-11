@@ -1,0 +1,38 @@
+{% extends 'frontend/basee.html' %}
+{% load static %}
+{% load subsite_tags %}
+{% block kontennya %}
+<section class="pt-4">
+    <div class="container"> <!-- container -->
+        <div class="section-header">
+            <h2>{{laporans.0.jenislaporan_id.nm_laporan}} <span class="highlight"><strong>BIRO SUMBER DAYA MANUSIA</strong></span></h2>
+            <!-- <h5><em>Badan Pengawas Obat dan Makanan</em></h5> -->
+            <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+        </div>
+    </div>
+    <div class="container px-lg-5">
+        <!-- Page Features-->
+        <div class="row gx-lg-5">
+            {% for l in laporans %}
+            
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-dark text-white rounded-3 mb-4 mt-n4"><i class="bi bi-globe"></i></div>
+                        <h3 class="fs-4 fw-bold">{{l.tahun_laporan}}</h3><br/>
+                        <p class="mb-0">{{l.deskripsi}}</p><br/>
+                        {% if l.dokumen %}
+                        <a href="{{l.dokumen.url}}" download><input type="button" value="View File" /></a>
+                        {% else %}
+                        File belum ada
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+</body>

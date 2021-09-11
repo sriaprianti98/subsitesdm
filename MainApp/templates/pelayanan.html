@@ -1,64 +1,89 @@
-{% extends 'frontend/base3.html' %}
+{% extends 'frontend/basee.html' %}
 {% load static %}
 {% load subsite_tags %}
 {% block kontennya %}
-<body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0"><div class="container"> <!-- container -->
-        <div class="section-header">
-                <h4>PELAYANAN-PELAYANAN <span class="highlight"><strong>BIRO SDM</strong></span></h4>
-                <!-- <h5><em>terdiri dari informasi berita terbaru</em></h5> -->
-                <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
-            </div>
-        </div>
-        <section class="py-1">
-            {%for p in pelayanans %}
+<!-- <body class="d-flex flex-column h-100"> -->
+        <section class="py-5">
+            <!-- <div class="container">  -->
+                <!-- <div class="section-header">
+                    <h2>SEMUA PELAYANAN  <span class="highlight"><strong>BIRO SUMBER DAYA MANUSIA</strong></span></h2>
+                    <h5><em>Badan Pengawas Obat dan Makanan</em></h5>
+                    <div class="fancy"><span><img src="{% static 'img/favicon.ico' %}" alt="..."></span></div>
+                </div> -->
+            <!-- </div> -->
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     <div class="col-xl-8">
                         <!-- FAQ Accordion 1-->
-                        <h4 class="fw-bolder mb-3">{{p.kategori_id.nm_kategori}}</h4>
+                        
+                        <h4 class="fw-bolder mb-3">{{pelayanans.0.kategori_id.nm_kategori}}</h4>
                         <div class="accordion mb-5" id="accordionExample">
+                            {%for p in pelayanans %}
                             <div class="accordion-item">
-                                <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{p.nm_pelayanan}}</button></h3>
-                                <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{p.pk}}" aria-expanded="true" aria-controls="collapseOne">{{p.nm_pelayanan}}</button></h3>
+                                <div class="accordion-collapse collapse" id="collapse{{p.pk}}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <strong>SYARAT PELAYANAN :</strong>
                                         <ul>
                                             {% for sy in p.detailpelayanan_id.syaratpelayanan_id.all%}
-                                            <li>{{sy}}</li>
+                                            <li >{{sy}}</li>
                                             {% endfor %}
                                           </ul> 
                                         <p>{{p.detailpelayanan_id.syarat_pelayanan}}</p>
                                         
-                                        <p class="text-center"><img src="{{ p.detailpelayanan_id.infografis.url }}" width="700px"></p>
+                                        <p class="text-center"><img src="{{p.detailpelayanan_id.infografis.url }}" width="500px"></p>
                                         <div align="right">
-                                            <a href="{{p.detailpelayanan_id.dokumen.url}}" download><input type="button" value="Unduh Dokumen" /></a>
-                                            <a href="{p.detailpelayanan_id.link}}" download><input type="button" value="Lihat Aplikasi" /></a>
+                                            <a href="{{p.detailpelayanan_id.dokumen.url}}" class="btn btn-info" target="_blank">Lihat Dokumen</a>
+                                            <a href="//{{p.detailpelayanan_id.link}}"class="btn btn-success" >Lihat Aplikasi</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <h5 class="fw-bolder mb-3">Kategori Pelayanan</h5>
                         <div class="card border-0 bg-light mt-xl-5">
-                            <div class="card-body p-4 py-lg-5">
-                                <ul style="list-style-type:none;">
-                                    {% for kt in kat %}
-                                    <li><a href=".?kat={{kt.pk}}">{{kt.nm_kategori}}</a></li>
-                                    {% empty %}
-                                    Kategori belum dibuat
-                                    {% endfor %}
-                                  </ul> 
+                            <div class="card-header">Kategori Pelayanan</div>
+                            <div class="card-body p-4 py-lg-2">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <ul class="list-unstyled mb-0">
+                                                {% for kt in kat %}
+                                                <li class="{{forloop.first|is_active}}"><a href=".?kat={{kt.pk}}">{{kt.nm_kategori}}</a></li>
+                                                {% empty %}
+                                                Kategori belum dibuat
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-            {% endfor %}
         </section>
-    </main>
-</body>
+        
+        <section class="py-5 bg-light">
+            <div class="container px-2 my-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">Aplikasi Biro SDM</h2>
+                    <p class="lead fw-normal text-muted mb-5">tautan aplikasi biro sdm bpom</p>
+                </div>
+                <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+                    {% for ta in tautans%}
+                    <div class="col mb-5 mb-5 mb-xl-0">
+                        <div class="text-center">
+                            <img class="img-fluid rounded-circle mb-4 px-4" src="{{ta.photo.url}}" alt="..." />
+                            <h5 class="fw-bolder">{{ta.nm_aplikasi}}</h5>
+                            <a href="{{ta.directlink}}"class="btn btn-info" >Lihat Aplikasi</a>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>
+<!-- </body> -->
 {% endblock %}

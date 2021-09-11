@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'MainApp.base_processors.jenis_laporan'
             ],
             'libraries':{
                 'subsite_tags': 'templates.tags.subsite_tags',

@@ -1,0 +1,40 @@
+{%for f in faqs %}
+<!-- FAQ Accordion 1-->
+<h4 class="fw-bolder mb-3">{{f.kategori_FAQ.kategori_faq}}</h4>
+<div class="accordion mb-5" id="accordionExample">
+<div class="accordion-item">
+    <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{f.detail_FAQ.pertanyaan}}</button></h3>
+    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            {{f.detail_FAQ.jawaban.judulFAQ}}
+        </div>
+    </div>
+</div>
+</div>
+{% empty %}
+<h4 class="fw-bolder mb-3">Pencarian Pertanyaan FAQ tidak ditemukan</h4>
+{%endfor %}
+<!-- FAQ Accordion 2-->
+<ul id="skeleton-loading" style="display: none;" class="o-vertical-spacing o-vertical-spacing--l">
+<li class="blog-post o-media">
+<!--       <div class="o-media__figure">
+    <span class="skeleton-box" style="width:100px;height:80px;"></span>
+    </div> -->
+    <div class="o-media__body">
+    <div class="o-vertical-spacing">
+        <h3 class="blog-post__headline">
+        <span class="skeleton-box" style="width:55%;"></span>
+        </h3>
+        <p>
+        <span class="skeleton-box" style="width:80%;"></span>
+        <span class="skeleton-box" style="width:90%;"></span>
+        <span class="skeleton-box" style="width:83%;"></span>
+        <span class="skeleton-box" style="width:80%;"></span>
+        </p>
+        <div class="blog-post__meta">
+        <span class="skeleton-box" style="width:70px;"></span>
+        </div>
+    </div>
+    </div>
+</li>
+</ul>

@@ -48,48 +48,50 @@
     ================================================== -->
     <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="..."></a>
-            </div>
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="..."></a>
+          </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'beranda' %}" class="scroll">Beranda</a></li>
-                <li><div class="dropdown">
-                    <button class="dropbtn">TENTANG KAMI</button>
-                    <div class="dropdown-content">
-                        <a href="{% url 'visimisibpom' %}">Visi dan Misi BPOM</a>
-                        <a href="{% url 'tentangkami' %}">Profil Biro SDM</a>
-                        <a href="#">Profil Kepala Biro SDM</a>
-                        <!-- <a href="#">Struktur Organisasi</a> -->
-                     </div>
-                </div></li>
-                <!-- <li><a href="{% url 'tentangkami' %}" class="scroll">Tentang Kami</a></li> -->
-                <li><a href="#tf-blog" class="scroll">Berita</a></li>
-                <li><a href="{% url 'pelayanan' %}" class="scroll">Pelayanan</a></li>
-                <li><div class="dropdown">
-                    <button class="dropbtn">LAPORAN</button>
-                    <div class="dropdown-content">
-                        <a href="{% url 'laporantahunan' %}">Laporan Tahunan</a>
-                        <a href="{% url 'laporankinerja' %}">Laporan Kinerja</a>
-                     </div>
-                </div></li>
-                <li><a href="#tf-works" class="scroll">Galeri SDM</a></li>
-                <li><a href="{% url 'faq' %}" class="scroll">FAQ</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'beranda' %}" class="scroll">Beranda</a></li>
+              <li><div class="dropdown">
+                  <button class="dropbtn">TENTANG KAMI</button>
+                  <div class="dropdown-content">
+                      <a href="{% url 'visimisibpom' %}">Visi dan Misi BPOM</a>
+                      <a href="{% url 'tentangkami' %}">Profil Biro SDM</a>
+                      <a href="{% url 'profilkaro' %}">Profil Kepala Biro SDM</a>
+                      <!-- <a href="#">Struktur Organisasi</a> -->
+                    </div>
+              </div></li>
+              <!-- <li><a href="{% url 'tentangkami' %}" class="scroll">Tentang Kami</a></li> -->
+              <li><a href="#tf-blog" class="scroll">Berita</a></li>
+              <li><a href="{% url 'pelayanan' %}" class="scroll">Pelayanan</a></li>
+              <li><div class="dropdown">
+                  <button class="dropbtn">LAPORAN</button>
+                  <div class="dropdown-content">
+                    {% for jl in jns_laporan %}
+                      <a href="{% url 'laporan' jns=jl.pk %}">{{jl|title}}</a>
+                      {%empty%}
+                    {%endfor%}
+                    </div>
+              </div></li>
+              <li><a href="#tf-works" class="scroll">Galeri SDM</a></li>
+              <li><a href="{% url 'faq' %}" class="scroll">FAQ</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
-    {% block kontennya %}{% endblock %}
+    {% block kontennya %} {% endblock %}
 
     <!-- Footer 
     ================================================== -->

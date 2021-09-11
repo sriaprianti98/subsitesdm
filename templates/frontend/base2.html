@@ -46,8 +46,8 @@
 
     <!-- Main Navigation 
     ================================================== -->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+      <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -66,30 +66,33 @@
                     <div class="dropdown-content">
                         <a href="{% url 'visimisibpom' %}">Visi dan Misi BPOM</a>
                         <a href="{% url 'tentangkami' %}">Profil Biro SDM</a>
-                        <a href="#">Profil Kepala Biro SDM</a>
+                        <a href="{% url 'profilkaro' %}">Profil Kepala Biro SDM</a>
                         <!-- <a href="#">Struktur Organisasi</a> -->
-                     </div>
+                    </div>
                 </div></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'berita' %}">BERITA</a></li>
                 <li><div class="dropdown">
                   <button class="dropbtn">LAPORAN</button>
                   <div class="dropdown-content">
-                      <a href="{% url 'laporantahunan' %}">Laporan Tahunan</a>
-                      <a href="{% url 'laporankinerja' %}">Laporan Kinerja</a>
-                   </div>
+                    {% for jl in jns_laporan %}
+                      <a href="{% url 'laporan' jns=jl.pk %}">{{jl|title}}</a>
+                      {%empty%}
+                    {%endfor%}
+                  </div>
               </div></li>
                 <li><a href="{% url 'pelayanan' %}" class="scroll">Pelayanan</a></li>
                 <li><a href="{% url 'faq' %}" class="scroll">FAQ</a></li>
               </ul>
             </div><!-- /.navbar-collapse --> 
-        </div><!-- /.container-fluid -->
-    </nav>
+          </div><!-- /.container-fluid -->
+      </nav>
 
     {% block kontennya %}{% endblock %}
 
     <!-- Footer 
     ================================================== -->
-    <div id="tf-footer">
-        <div class="container"><!-- container -->
+      <div id="tf-footer">
+         <div class="container"><!-- container -->
             <p class="pull-left">Copyright ©️2021 BPOM. All rights reserved.</p> <!-- copyright text here-->
             <ul class="list-inline social pull-right">
                 <li><a href="https://www.facebook.com/BadanPengawasObatdanMakananRI/"><i class="fa fa-facebook"></i></a></li> <!-- Change # With your FB Link -->
@@ -97,8 +100,8 @@
                 <li><a href="https://www.instagram.com/bpom_ri/?hl=id"><i class="fa fa-instagram"></i></a></li> <!-- Change # With your Google Plus Link -->
                 <li><a href="https://www.youtube.com/channel/UCO5Oi2m_M-uQhTaKDyGA0nA"><i class="fa fa-youtube"></i></a></li> <!-- Change # With your Youtube Link -->
             </ul>
-        </div><!-- end container -->
-    </div>
+         </div><!-- end container -->
+      </div>
     
 
 
@@ -128,7 +131,7 @@
 
     <!-- Contact page-->
     <script type="text/javascript" src="{% static 'js/jqBootstrapValidation.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/contact.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/contact.js' %}"></script> -->
 
     <!-- Javascripts
     ================================================== -->
