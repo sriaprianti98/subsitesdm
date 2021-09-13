@@ -1,0 +1,4 @@
+__pycache__/
+
+portalsdm/settings.py
+MainApp/miggrations/*
