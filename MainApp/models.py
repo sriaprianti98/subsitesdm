@@ -12,13 +12,13 @@ class User(models.Model):
         return self.nama
 
 class KategoriBerita(models.Model):
-    kategori = models.CharField(max_length=100, null=False)
+    kategori = models.CharField(max_length=400, null=False)
 
     def __str__(self):
         return self.kategori
 
 class Berita(models.Model):
-    judul = models.CharField(max_length=100, null=False)
+    judul = models.TextField()
     isi = models.TextField()
     tanggal_berita = models.DateTimeField(auto_now_add=True)
     Photo = models.ImageField(upload_to ='berita')
@@ -30,7 +30,7 @@ class Berita(models.Model):
         return self.judul
 
 class Beranda(models.Model):
-    judul_beranda = models.CharField(max_length=100, null=False)
+    judul_beranda = models.CharField(max_length=400, null=False)
     deskripsi = models.TextField()
     Photo_beranda = models.ImageField('photo beranda', upload_to ='beranda') 
     created_by = models.ForeignKey(User,models.SET_NULL,blank=True,null=True,)
@@ -39,19 +39,19 @@ class Beranda(models.Model):
         return self.judul_beranda
 
 class KategoriFAQ(models.Model):
-    kategori_faq = models.CharField(max_length=100, null=False)
+    kategori_faq = models.CharField(max_length=400, null=False)
     
     def __str__(self):
         return self.kategori_faq
 
 class jawabanFAQ(models.Model):
-    judulFAQ = models.CharField(max_length=100, null=False)
+    judulFAQ = models.CharField(max_length=400, null=False)
     
     def __str__(self):
         return self.judulFAQ
 
 class DetailFAQ(models.Model):
-    pertanyaan = models.CharField(max_length=100, null=False)
+    pertanyaan = models.TextField()
     jawaban = models.ForeignKey(jawabanFAQ,models.SET_NULL,blank=True,null=True,)
 
     def __str__(self):
@@ -61,20 +61,19 @@ class FAQ(models.Model):
     kategori_FAQ = models.ForeignKey(KategoriFAQ,models.SET_NULL,blank=True,null=True,)
     detail_FAQ = models.ForeignKey(DetailFAQ,models.SET_NULL,blank=True,null=True,)
     created_by = models.ForeignKey(User,models.SET_NULL,blank=True,null=True,)
-    # emailsdm = models.EmailField(max_length = 254,default = "@gmail.com")
 
     def __str__(self):
         return self.detail_FAQ.pertanyaan
 
 class Kontak(models.Model):
-    nama = models.CharField(max_length=100, null=False)
-    alamat = models.CharField(max_length=100, null=False)
+    nama = models.CharField(max_length=400, null=False)
+    alamat = models.CharField(max_length=400, null=False)
     email = models.EmailField( max_length=254)
     nohp = models.CharField(max_length=100, null=True)
-    directlink = models.URLField(max_length = 200,default = "link")
+    directlink = models.URLField(max_length = 400,default = "link")
 
 class Kategori(models.Model):
-    nama = models.CharField(max_length=100, null=False)
+    nama = models.CharField(max_length=400, null=False)
 
     def __str__(self):
             return self.nama
@@ -86,13 +85,13 @@ class Kategori(models.Model):
 #     created_by = models.ForeignKey(User,models.SET_NULL,blank=True,null=True,)
 
 class Subkelompok(models.Model):
-    nm_subkelompok = models.CharField(max_length=100, null=False)
+    nm_subkelompok = models.TextField()
     
     def __str__(self):
         return self.nm_subkelompok
         
 class Kelompok(models.Model):
-    nm_kelompok = models.CharField(max_length=100, null=False)
+    nm_kelompok = models.TextField()
     subkelompok_id = models.ManyToManyField(Subkelompok)
     Photo = models.ImageField(upload_to ='kelompoksdm')
 
@@ -100,14 +99,14 @@ class Kelompok(models.Model):
         return self.nm_kelompok
 
 class MisiBPOM(models.Model):
-    misi = models.CharField(max_length=100, null=False)
+    misi = models.TextField()
 
 
     def __str__(self):
         return self.misi
 
 class TugasBPOM(models.Model):
-    tugas = models.CharField(max_length=100, null=False)
+    tugas = models.TextField()
 
 
     def __str__(self):
@@ -116,7 +115,7 @@ class TugasBPOM(models.Model):
 class ProfilKaro(models.Model):
     nama = models.CharField(max_length=100)
     nip = models.CharField(max_length=100)
-    jabatan = models.CharField(max_length=100)
+    jabatan = models.CharField(max_length=400)
     Photo = models.ImageField(upload_to ='profilkaro')
     deskripsi = models.TextField()
 
@@ -128,21 +127,21 @@ class Tentang(models.Model):
     kelompok_id = models.ManyToManyField(Kelompok)
     misipom = models.ManyToManyField(MisiBPOM)
     gb_strukturorganisasi = models.ImageField(upload_to='tentangkami')
-    visipom = models.CharField(max_length=200, default="Some String")
-    bpomis = models.CharField(max_length=500, default="Some String")
-    nm_kelompok = models.CharField(max_length=100, null=False)
+    visipom = models.TextField()
+    bpomis = models.TextField()
+    nm_kelompok = models.TextField()
     tugaspom = models.ManyToManyField(TugasBPOM)
     profilkaro = models.ManyToManyField(ProfilKaro)
 
 class Komentar(models.Model):
-    nama = models.CharField(max_length=100, null=False)
+    nama = models.CharField(max_length=400, null=False)
     email = models.EmailField( max_length=254)
     komentar = models.TextField()
     tanggal_berita = models.DateTimeField(auto_now_add=True)
 
 
 class SyaratPelayanan(models.Model):
-    nm_syarat = models.CharField(max_length=100, null=False)
+    nm_syarat = models.TextField()
 
     def __str__(self):
         return self.nm_syarat
@@ -151,7 +150,7 @@ class DetailPelayanan(models.Model):
     syaratpelayanan_id = models.ManyToManyField(SyaratPelayanan)
     infografis = models.ImageField(upload_to ='pelayanan')
     dokumen = models.FileField(upload_to='pelayanan')
-    link = models.CharField(max_length=100)
+    link = models.TextField()
     
 class Kategori_pel(models.Model):
     nm_kategori = models.CharField(max_length=200)
@@ -161,7 +160,7 @@ class Kategori_pel(models.Model):
         return self.nm_kategori
 
 class Pelayanan(models.Model):
-    nm_pelayanan = models.CharField(max_length=100, null=False)
+    nm_pelayanan = models.TextField()
     detailpelayanan_id = models.ForeignKey(DetailPelayanan,models.SET_NULL,blank=True,null=True,)
     kategori_id = models.ForeignKey(Kategori_pel,models.SET_NULL, blank=True, null=True, related_name="has_kategori")
 

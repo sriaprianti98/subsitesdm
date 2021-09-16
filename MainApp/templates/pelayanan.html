@@ -76,8 +76,9 @@
                     {% for ta in tautans%}
                     <div class="col mb-5 mb-5 mb-xl-0">
                         <div class="text-center">
-                            <img class="img-fluid rounded-circle mb-4 px-4" src="{{ta.photo.url}}" alt="..." />
+                            <img class="img-fluid mb-4 px-4" src="{{ta.photo.url}}" alt="..." />
                             <h5 class="fw-bolder">{{ta.nm_aplikasi}}</h5>
+                            <p>{{ta.desk}}</p>
                             <a href="{{ta.directlink}}"class="btn btn-info" >Lihat Aplikasi</a>
                         </div>
                     </div>
