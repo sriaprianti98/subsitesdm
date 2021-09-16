@@ -1,3 +1,4 @@
+jenis_laporan(request)
 from .models import *
 
 def jenis_laporan(request):
